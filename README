@@ -1,0 +1,40 @@
+Sparfun's RGB LED Matrix + Raspbery Pi Test programs
+====================================================
+
+Hopes to help jumpstart/test/troubleshoot your
+Sparkfun's RGB LED matri(x|ces) connection with the
+Raspberry Pi using the SPI interface
+
+Assumes:
+  The LED Matrix backpack is running the 4096 colors capable
+  alternative firmware from https://github.com/fornellas/SFRGBLEDMatrix.
+
+Requires:
+  The wiringPi library, installed. Download from
+  https://projects.drogon.net/raspberry-pi/wiringpi/
+
+Connection:
+  * You will need a Logic level converter when interfacing the the Raspberry Pi.
+    I use Freetronics' bi-directional, 4 channel LLC module (http://www.freetronics.com/products/logic-level-converter-module)
+  * Refer to the Main GPIO Connector pin layout here: https://projects.drogon.net/raspberry-pi/wiringpi/pins/
+
+
+
+                                  |----------------------------------------------|
+                                  |                                              |       Raspberry Pi's GPIO connector 
+      LED Matrix backpack         |        Logic Level Converter                 |      (PIN NUMBERS Shown, NOT REAL LAYOUT!)
+                                  |                                              |
+              -------|            |      |--------------------|                  |      |
+                VCC  +------------|------+ VHIGH         VLOW +------------|     |------+  2   5V
+                VCC  +                   |                    |            |------------+  1   3.3V
+               SCLK  +-------------------+ 1                1 +-------------------------+  23  SCLK
+                 CS  +-------------------+ 2      <=        2 +-------------------------+  24  CE0 (or pin 26(CE1) if you changed the channel to 1)
+               MOSI  +-------------------+ 3                3 +-------------------------+  19  MOSI
+                GND  +-------------------+ GND            GND +-------------------------+  6   GND/0V
+              -------|                   |--------------------|                         |
+
+
+
+Compile/Run
+  make compile
+  make run-1 (or) make run-2

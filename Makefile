@@ -1,4 +1,4 @@
-all: compile run-1
+all: compile run-1 run-1
 
 compile:
 	gcc -o rgb-test-1 SFRGBPiTest1.c -L /usr/local/lib -l wiringPi -Wall
