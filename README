@@ -7,32 +7,31 @@ Raspberry Pi using the SPI interface
 
 Assumes:
   The LED Matrix backpack is running the 4096 colors capable
-  alternative firmware from https://github.com/fornellas/SFRGBLEDMatrix.
+  alternative firmware from https://github.com/fornellas/RGB_Backpack_4096_Colors
 
 Requires:
-  The wiringPi library, installed. Download from
-  https://projects.drogon.net/raspberry-pi/wiringpi/
+  The wiringPi library, installed. Download from http://wiringpi.com/
 
 Connection:
   * You will need a Logic level converter when interfacing the the Raspberry Pi.
-    I use Freetronics' bi-directional, 4 channel LLC module (http://www.freetronics.com/products/logic-level-converter-module)
-  * Refer to the Main GPIO Connector pin layout here: https://projects.drogon.net/raspberry-pi/wiringpi/pins/
+    I use Freetronics' bi-directional, 4 channel LLC module
+  * Refer to the Main GPIO Connector pin layout here: http://wiringpi.com/pins/
 
 
 
-                                  |----------------------------------------------|
-                                  |                                              |       Raspberry Pi's GPIO connector 
-      LED Matrix backpack         |        Logic Level Converter                 |      (PIN NUMBERS Shown, NOT REAL LAYOUT!)
-                                  |                                              |
-              -------|            |      |--------------------|                  |      |
-                VCC  +------------|------+ VHIGH         VLOW +------------|     |------+  2   5V
-                VCC  +                   |                    |            |------------+  1   3.3V
-               SCLK  +-------------------+ 1                1 +-------------------------+  23  SCLK
-                 CS  +-------------------+ 2      <=        2 +-------------------------+  24  CE0 (or pin 26(CE1) if you changed the channel to 1)
-               MOSI  +-------------------+ 3                3 +-------------------------+  19  MOSI
-                GND  +-------------------+ GND            GND +-------------------------+  6   GND/0V
-              -------|                   |--------------------|                         |
-
+            |----------------------------------|
+            |                                  |  Raspberry Pi's GPIO connector
+LED Matrix  |        Logic Level Converter     |      (PIN NUMBERS Shown, NOT ACTUAL LAYOUT!)
+Backpack    |                                  |
+  -------|  |      |--------------------|      |  |---------
+    VCC  +--|------+ VHIGH         VLOW +---|  |--+  2   5V
+    VCC  +         |                    |   |-----+  1   3.3V
+    SCLK +---------+ 1                1 +---------+  23  SCLK
+      CS +---------+ 2      <=        2 +---------+  24  CE0 (or pin 26(CE1) if you
+                   |                    |                       changed the channel to 1)
+    MOSI +---------+ 3                3 +---------+  19  MOSI
+    GND  +---------+ GND            GND +---------+  6   GND/0V
+  -------|         |--------------------|         |---------
 
 
 Compile/Run
